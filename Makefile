@@ -6,6 +6,10 @@ develop:
 install-deps:
 	npm install
 
+dev:
+	rm -rf dist
+	npx webpack
+
 build:
 	rm -rf dist
 	NODE_ENV=production npx webpack
