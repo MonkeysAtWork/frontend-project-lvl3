@@ -6,6 +6,9 @@ develop:
 install-deps:
 	npm install
 
+start:
+	npx webpack-dev-server --open
+
 dev:
 	rm -rf dist
 	npx webpack

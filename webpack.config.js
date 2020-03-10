@@ -1,16 +1,29 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
+const HtmlMinifierPlugin = require('html-minifier-webpack-plugin');
+
+const currentMode = process.env.NODE_ENV || 'development';
+const isDev = currentMode === 'development';
+
 
 module.exports = {
-  mode: process.env.NODE_ENV || 'development',
+  mode: currentMode,
+  devtool: isDev ? 'source-map' : '',
+  optimization: {
+    minimizer: [
+      new TerserJSPlugin(),
+      new OptimizeCSSAssetsPlugin(),
+      new HtmlMinifierPlugin({ collapseWhitespace: true }),
+    ],
+  },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        use: ['babel-loader', 'eslint-loader'],
       },
       {
         test: /\.css$/,

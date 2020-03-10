@@ -1,6 +1,3 @@
 // import 'bootstrap/dist/js/bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import init from './init';
-
-
-init();
+import 'bootstrap/dist/css/bootstrap.css';
+import './init';
