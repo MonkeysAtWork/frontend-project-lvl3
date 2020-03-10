@@ -1,3 +1,4 @@
-// import 'bootstrap/dist/js/bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import './init';
+import init from './init';
+
+init();

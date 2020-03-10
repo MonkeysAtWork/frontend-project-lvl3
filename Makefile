@@ -7,15 +7,15 @@ install-deps:
 	npm install
 
 start:
-	npx webpack-dev-server --open
+	npm run start
 
 dev:
 	rm -rf dist
-	npx webpack
+	npm run dev
 
 build:
 	rm -rf dist
-	NODE_ENV=production npx webpack
+	npm run build
 
 test:
 	npm test
