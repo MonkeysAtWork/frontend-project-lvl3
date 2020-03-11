@@ -5,8 +5,8 @@
   "scripts": {
     "test": "jest",
     "build": "NODE_ENV=production npx webpack",
-    "dev": "NODE_ENV=development npx webpack",
-    "start": "NODE_ENV=development npx webpack-dev-server --open"
+    "dev": "npx webpack",
+    "start": "npx webpack-dev-server --open"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
+    "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "jquery": "^3.4.1",
     "popper.js": "^1.16.1"

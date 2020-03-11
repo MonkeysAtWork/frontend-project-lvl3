@@ -5,17 +5,4 @@
 [![Build Status](https://travis-ci.org/MonkeysAtWork/frontend-project-lvl3.svg?branch=master)](https://travis-ci.org/MonkeysAtWork/frontend-project-lvl3)
 
 ##
-This repository is an educational project, created and maintained by student of Hexlet. [Read more about Hexlet (in Russian)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=webpack-package).
-##
-
-## Setup
-
-```sh
-make install
-```
-
-### Run
-
-```sh
-make develop
-```
+This repository is an educational project. Visit site: [RSS-Aggregator](https://rss-aggregator.now.sh).

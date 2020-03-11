@@ -1,13 +1,5 @@
-import { promises as fs } from 'fs';
-import path from 'path';
-import init from '../src/init';
+import axios from 'axios';
 
-beforeEach(async () => {
-  const pathToHtml = path.resolve(__dirname, '__fixtures__/index.html');
-  const html = await fs.readFile(pathToHtml, 'utf8');
-  document.body.innerHTML = html;
-});
 
-test('init', () => {
-  init();
-});
+test('test site working', () => axios.get('https://rss-aggregator.now.sh/')
+  .then(response => expect(response.status).toEqual(200)));
