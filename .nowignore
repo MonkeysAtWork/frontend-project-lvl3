@@ -1,3 +1,7 @@
 /__tests__/
+/dist/
 README.md
 .travis.yml
+Makefile
+.eslintignore
+.eslintrc.yml
