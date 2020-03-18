@@ -23,7 +23,15 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: isDev ? ['babel-loader', 'eslint-loader'] : 'babel-loader',
+        use: [
+          'babel-loader', // isDev ? ['babel-loader', 'eslint-loader'] : 'babel-loader',
+          {
+            loader: 'eslint-loader',
+            options: {
+              emitWarning: true,
+            },
+          },
+        ],
       },
       {
         test: /\.css$/,

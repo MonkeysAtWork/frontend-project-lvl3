@@ -27,7 +27,10 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "jquery": "^3.4.1",
-    "popper.js": "^1.16.1"
+    "lodash": "^4.17.15",
+    "melanke-watchjs": "^1.5.2",
+    "popper.js": "^1.16.1",
+    "yup": "^0.28.3"
   },
   "devDependencies": {
     "@babel/core": "^7.1.6",
