@@ -1,18 +1,27 @@
 <!doctype html>
 <html>
-  <head>
-    <title>RSS aggregator</title>
-  <link href="main.css" rel="stylesheet"></head>
-  <body>
-    <div class="jumbotron">
-      <h1 class="display-4">RSS aggregator!</h1>
-      <form>
-        <div class="form-group">
-          <label for="inputRss" class="sr-only">RSS link</label>
-          <input type="text" class="form-control" placeholder="RSS link" id="inputRss">
-        </div>
-        <button type="submit" class="btn btn-primary">Add</button>
-      </form>
+
+<head>
+  <title>RSS aggregator</title>
+</head>
+
+<body>
+  <div class="jumbotron sticky-top pt-2 pb-3">
+    <h1 class="display-5 ">RSS aggregator</h1>
+    <div style="max-width: 550px">
+    <form class="form-inline" id="rssAddForm">
+      <input type="text" name="link" class="form-control col mr-2" spellcheck="false" placeholder="RSS link">
+      <button type="submit" class="btn btn btn-outline-primary d-flex align-items-center" disabled>Add</button>
+      <div class="invalid-feedback" id="feedback"></div>
+    </form>
+  </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col col-4" id="feeds"></div>
+      <div class="col col-8" id="posts"></div>
+      </div>
     </div>
-  <script type="text/javascript" src="main.js"></script></body>
+</body>
+
 </html>

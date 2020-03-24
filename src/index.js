@@ -1,4 +1,4 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import init from './init';
+import run from './application';
 
-init();
+run();

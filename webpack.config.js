@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const HtmlMinifierPlugin = require('html-minifier-webpack-plugin');
+const cssnano = require('cssnano');
 
 const currentMode = process.env.NODE_ENV || 'development';
 const isDev = currentMode === 'development';
@@ -13,8 +14,20 @@ module.exports = {
   devtool: isDev ? 'source-map' : '',
   optimization: {
     minimizer: [
-      new TerserJSPlugin(),
-      new OptimizeCSSAssetsPlugin(),
+      new TerserJSPlugin({
+        terserOptions: {
+          output: {
+            comments: false,
+          },
+        },
+        extractComments: false,
+      }),
+      new OptimizeCSSAssetsPlugin({
+        cssProcessor: cssnano,
+        cssProcessorPluginOptions: {
+          preset: ['default', { discardComments: { removeAll: true } }],
+        },
+      }),
       new HtmlMinifierPlugin({ collapseWhitespace: true }),
     ],
   },
@@ -24,7 +37,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: [
-          'babel-loader', // isDev ? ['babel-loader', 'eslint-loader'] : 'babel-loader',
+          'babel-loader',
           {
             loader: 'eslint-loader',
             options: {
