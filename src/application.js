@@ -6,6 +6,9 @@ import * as yup from 'yup';
 import view from './view';
 
 
+const validate = value => yup.string().url().validate(value);
+
+
 const makeRequest = (url) => {
   const prefixURL = 'https://cors-anywhere.herokuapp.com';
   const proxy = axios.create({
@@ -21,23 +24,63 @@ const makeRequest = (url) => {
 };
 
 
-const isContainsRSS = doc => doc.documentElement.tagName === 'rss';
+const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-const parseRSS = (xmlDoc) => {
-  const title = xmlDoc.querySelector('title').textContent;
-  const description = xmlDoc.querySelector('description').textContent;
-  const Feedlink = xmlDoc.querySelector('link').textContent;
-  const channel = { title, description, link: Feedlink };
+const makeAutoRequestLoop = (funk, ms) => {
+  wait(ms)
+    .then(funk)
+    .then(() => makeAutoRequestLoop(funk, ms))
+    .catch(() => makeAutoRequestLoop(funk, ms));
+};
 
-  const items = xmlDoc.querySelectorAll('item');
+
+const isRSS = doc => doc.documentElement.tagName === 'rss';
+
+const parseRSS = (data) => {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(data, 'text/xml');
+  if (!isRSS(doc)) {
+    throw new Error('errors.notTargetURL');
+  }
+  const title = doc.querySelector('title').textContent;
+  const description = doc.querySelector('description').textContent;
+
+  const items = doc.querySelectorAll('item');
   const posts = [...items].map((item) => {
-    const postlink = item.querySelector('link').textContent;
+    const link = item.querySelector('link').textContent;
     const content = item.querySelector('description').textContent;
-
-    return { link: postlink, content };
+    return { link, content };
   });
+  return { title, description, posts };
+};
 
-  return { channel, posts };
+
+const getNewPosts = (posts, currentFeedId, postsList) => {
+  const addingPosts = postsList.filter(({ id }) => id === currentFeedId);
+  const newPosts = _.differenceBy(posts, addingPosts, 'link');
+  return newPosts;
+};
+
+const getFeedContent = (feed, state, isItAutoRequest) => {
+  const { title, description, posts } = feed;
+  const existingFeed = _.find(state.feedsList, { title });
+  if (!isItAutoRequest && existingFeed) {
+    throw new Error('errors.repeatURL');
+  }
+  let newPosts;
+  let newFeed;
+  let id;
+  if (existingFeed) {
+    id = existingFeed.id; // eslint-disable-line prefer-destructuring
+    newFeed = [];
+    newPosts = getNewPosts(posts, id, state.postsList);
+  } else {
+    id = _.uniqueId();
+    newFeed = [{ title, description, id }];
+    newPosts = posts;
+  }
+  newPosts = newPosts.map(post => ({ ...post, id }));
+  return { newPosts, newFeed };
 };
 
 
@@ -53,40 +96,37 @@ export default () => {
   };
 
 
-  const inputHandler = (e) => {
+  const handleInput = (e) => {
     const { value } = e.target;
     state.form.url = value;
-    yup.string().url().isValid(value).then((isValid) => {
-      if (isValid) {
+    validate(value)
+      .then(() => {
         state.form.errors = null;
-      } else {
+      })
+      .catch(() => {
         state.form.errors = 'errors.invalidURL';
-      }
-    });
+      });
   };
 
 
-  const submitHandler = (e) => {
+  const handleUrl = (url, isAutoRequest = false) => makeRequest(url)
+    .then((data) => {
+      const feed = parseRSS(data);
+      const { newFeed, newPosts } = getFeedContent(feed, state, isAutoRequest);
+      state.feedsList.unshift(...newFeed);
+      state.postsList.unshift(...newPosts);
+    });
+
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     state.form.formState = 'processing';
-    makeRequest(state.form.url)
-      .then((data) => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(data, 'text/xml');
-        if (!isContainsRSS(doc)) {
-          throw new Error('errors.notTargetURL');
-        }
-        const feed = parseRSS(doc);
-        const wasAddedBefore = _.some(state.feedsList, feed.channel);
-        if (wasAddedBefore) {
-          throw new Error('errors.repeatURL');
-        }
-
-        const id = _.uniqueId();
-        state.feedsList.push({ ...feed.channel, id });
-        feed.posts.forEach(post => state.postsList.push({ ...post, id }));
+    const { url } = state.form;
+    handleUrl(url)
+      .then(() => {
         state.form.url = '';
         state.form.formState = 'filling';
+        makeAutoRequestLoop(() => handleUrl(url, true), 5000);
       })
       .catch((err) => {
         state.form.formState = 'filling';
@@ -94,5 +134,5 @@ export default () => {
       });
   };
 
-  view(state, inputHandler, submitHandler);
+  view(state, handleInput, handleSubmit);
 };

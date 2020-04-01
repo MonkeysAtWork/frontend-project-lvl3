@@ -1,0 +1,204 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`auto request 1`] = `
+"<div class=\\"jumbotron pt-2 pb-3 mb-0\\" id=\\"header\\">
+    <h1 class=\\"display-5 \\">RSS aggregator</h1>
+    <div id=\\"formConteiner\\">
+        <form class=\\"form-inline\\" id=\\"rssAddForm\\">
+            <input type=\\"text\\" name=\\"link\\" class=\\"form-control col mr-2\\" spellcheck=\\"false\\" placeholder=\\"RSS link\\">
+            <button type=\\"submit\\" class=\\"btn btn btn-outline-primary d-flex align-items-center\\" disabled=\\"true\\">Add</button>
+            <div class=\\"invalid-feedback\\" id=\\"feedback\\"></div>
+        </form>
+    </div>
+</div>
+<div class=\\"container-fluid\\">
+    <div class=\\"row\\">
+        <div class=\\"col col-3 p-0\\" id=\\"feeds\\">
+            <div class=\\"list-group list-group-flush border-right\\">
+                <div class=\\"list-group-item\\">
+                    <h5 class=\\"mb-1\\">Lorem ipsum feed for an interval of 1 minutes</h5>
+                    <p class=\\"mb-1\\">This is a constantly updating lorem ipsum feed</p>
+                </div>
+            </div>
+        </div>
+        <div class=\\"col col-8\\" id=\\"posts\\">
+            <ul class=\\"list-group list-group-flush overflow-auto\\">
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637680\\">Veniam magna occaecat qui irure mollit ea consequat ex pariatur.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637620\\">Do reprehenderit nostrud laborum deserunt aliqua aliqua fugiat magna labore ullamco.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637560\\">Qui amet et in pariatur et nostrud quis do id.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637500\\">Tempor magna non duis sint deserunt pariatur adipisicing elit.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637440\\">Incididunt consequat reprehenderit sit adipisicing voluptate sint consequat.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637380\\">Labore aliqua incididunt duis voluptate reprehenderit officia est mollit voluptate velit consectetur nulla velit.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637320\\">Voluptate deserunt elit consectetur tempor dolore ut dolor ex ullamco sunt aliquip esse sit.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637260\\">Eu adipisicing nostrud tempor voluptate commodo laboris eiusmod voluptate ex.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637200\\">Sint anim reprehenderit elit commodo.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637140\\">Ea officia veniam dolore adipisicing nulla esse aliqua.</a></li>
+            </ul>
+        </div>
+    </div>
+</div>"
+`;
+
+exports[`auto request 2`] = `
+"<div class=\\"jumbotron pt-2 pb-3 mb-0\\" id=\\"header\\">
+    <h1 class=\\"display-5 \\">RSS aggregator</h1>
+    <div id=\\"formConteiner\\">
+        <form class=\\"form-inline\\" id=\\"rssAddForm\\">
+            <input type=\\"text\\" name=\\"link\\" class=\\"form-control col mr-2\\" spellcheck=\\"false\\" placeholder=\\"RSS link\\">
+            <button type=\\"submit\\" class=\\"btn btn btn-outline-primary d-flex align-items-center\\" disabled=\\"true\\">Add</button>
+            <div class=\\"invalid-feedback\\" id=\\"feedback\\"></div>
+        </form>
+    </div>
+</div>
+<div class=\\"container-fluid\\">
+    <div class=\\"row\\">
+        <div class=\\"col col-3 p-0\\" id=\\"feeds\\">
+            <div class=\\"list-group list-group-flush border-right\\">
+                <div class=\\"list-group-item\\">
+                    <h5 class=\\"mb-1\\">Lorem ipsum feed for an interval of 1 minutes</h5>
+                    <p class=\\"mb-1\\">This is a constantly updating lorem ipsum feed</p>
+                </div>
+            </div>
+        </div>
+        <div class=\\"col col-8\\" id=\\"posts\\">
+            <ul class=\\"list-group list-group-flush overflow-auto\\">
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637680\\">Veniam magna occaecat qui irure mollit ea consequat ex pariatur.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637620\\">Do reprehenderit nostrud laborum deserunt aliqua aliqua fugiat magna labore ullamco.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637560\\">Qui amet et in pariatur et nostrud quis do id.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637500\\">Tempor magna non duis sint deserunt pariatur adipisicing elit.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637440\\">Incididunt consequat reprehenderit sit adipisicing voluptate sint consequat.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637380\\">Labore aliqua incididunt duis voluptate reprehenderit officia est mollit voluptate velit consectetur nulla velit.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637320\\">Voluptate deserunt elit consectetur tempor dolore ut dolor ex ullamco sunt aliquip esse sit.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637260\\">Eu adipisicing nostrud tempor voluptate commodo laboris eiusmod voluptate ex.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637200\\">Sint anim reprehenderit elit commodo.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637140\\">Ea officia veniam dolore adipisicing nulla esse aliqua.</a></li>
+            </ul>
+        </div>
+    </div>
+</div>"
+`;
+
+exports[`auto request 3`] = `
+"<div class=\\"jumbotron pt-2 pb-3 mb-0\\" id=\\"header\\">
+    <h1 class=\\"display-5 \\">RSS aggregator</h1>
+    <div id=\\"formConteiner\\">
+        <form class=\\"form-inline\\" id=\\"rssAddForm\\">
+            <input type=\\"text\\" name=\\"link\\" class=\\"form-control col mr-2\\" spellcheck=\\"false\\" placeholder=\\"RSS link\\">
+            <button type=\\"submit\\" class=\\"btn btn btn-outline-primary d-flex align-items-center\\" disabled=\\"true\\">Add</button>
+            <div class=\\"invalid-feedback\\" id=\\"feedback\\"></div>
+        </form>
+    </div>
+</div>
+<div class=\\"container-fluid\\">
+    <div class=\\"row\\">
+        <div class=\\"col col-3 p-0\\" id=\\"feeds\\">
+            <div class=\\"list-group list-group-flush border-right\\">
+                <div class=\\"list-group-item\\">
+                    <h5 class=\\"mb-1\\">Lorem ipsum feed for an interval of 1 minutes</h5>
+                    <p class=\\"mb-1\\">This is a constantly updating lorem ipsum feed</p>
+                </div>
+            </div>
+        </div>
+        <div class=\\"col col-8\\" id=\\"posts\\">
+            <ul class=\\"list-group list-group-flush overflow-auto\\">
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637800\\">Veniam magna qui mollit ea ex pariatur.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637740\\">Do nostrud laborum aliqua fugiat magna labore ullamco.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637680\\">Veniam magna occaecat qui irure mollit ea consequat ex pariatur.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637620\\">Do reprehenderit nostrud laborum deserunt aliqua aliqua fugiat magna labore ullamco.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637560\\">Qui amet et in pariatur et nostrud quis do id.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637500\\">Tempor magna non duis sint deserunt pariatur adipisicing elit.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637440\\">Incididunt consequat reprehenderit sit adipisicing voluptate sint consequat.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637380\\">Labore aliqua incididunt duis voluptate reprehenderit officia est mollit voluptate velit consectetur nulla velit.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637320\\">Voluptate deserunt elit consectetur tempor dolore ut dolor ex ullamco sunt aliquip esse sit.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637260\\">Eu adipisicing nostrud tempor voluptate commodo laboris eiusmod voluptate ex.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637200\\">Sint anim reprehenderit elit commodo.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637140\\">Ea officia veniam dolore adipisicing nulla esse aliqua.</a></li>
+            </ul>
+        </div>
+    </div>
+</div>"
+`;
+
+exports[`auto request 4`] = `
+"<div class=\\"jumbotron pt-2 pb-3 mb-0\\" id=\\"header\\">
+    <h1 class=\\"display-5 \\">RSS aggregator</h1>
+    <div id=\\"formConteiner\\">
+        <form class=\\"form-inline\\" id=\\"rssAddForm\\">
+            <input type=\\"text\\" name=\\"link\\" class=\\"form-control col mr-2\\" spellcheck=\\"false\\" placeholder=\\"RSS link\\">
+            <button type=\\"submit\\" class=\\"btn btn btn-outline-primary d-flex align-items-center\\" disabled=\\"true\\">Add</button>
+            <div class=\\"invalid-feedback\\" id=\\"feedback\\"></div>
+        </form>
+    </div>
+</div>
+<div class=\\"container-fluid\\">
+    <div class=\\"row\\">
+        <div class=\\"col col-3 p-0\\" id=\\"feeds\\">
+            <div class=\\"list-group list-group-flush border-right\\">
+                <div class=\\"list-group-item\\">
+                    <h5 class=\\"mb-1\\">Lorem ipsum feed for an interval of 1 minutes</h5>
+                    <p class=\\"mb-1\\">This is a constantly updating lorem ipsum feed</p>
+                </div>
+            </div>
+        </div>
+        <div class=\\"col col-8\\" id=\\"posts\\">
+            <ul class=\\"list-group list-group-flush overflow-auto\\">
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637800\\">Veniam magna qui mollit ea ex pariatur.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637740\\">Do nostrud laborum aliqua fugiat magna labore ullamco.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637680\\">Veniam magna occaecat qui irure mollit ea consequat ex pariatur.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637620\\">Do reprehenderit nostrud laborum deserunt aliqua aliqua fugiat magna labore ullamco.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637560\\">Qui amet et in pariatur et nostrud quis do id.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637500\\">Tempor magna non duis sint deserunt pariatur adipisicing elit.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637440\\">Incididunt consequat reprehenderit sit adipisicing voluptate sint consequat.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637380\\">Labore aliqua incididunt duis voluptate reprehenderit officia est mollit voluptate velit consectetur nulla velit.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637320\\">Voluptate deserunt elit consectetur tempor dolore ut dolor ex ullamco sunt aliquip esse sit.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637260\\">Eu adipisicing nostrud tempor voluptate commodo laboris eiusmod voluptate ex.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637200\\">Sint anim reprehenderit elit commodo.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637140\\">Ea officia veniam dolore adipisicing nulla esse aliqua.</a></li>
+            </ul>
+        </div>
+    </div>
+</div>"
+`;
+
+exports[`auto request 5`] = `
+"<div class=\\"jumbotron pt-2 pb-3 mb-0\\" id=\\"header\\">
+    <h1 class=\\"display-5 \\">RSS aggregator</h1>
+    <div id=\\"formConteiner\\">
+        <form class=\\"form-inline\\" id=\\"rssAddForm\\">
+            <input type=\\"text\\" name=\\"link\\" class=\\"form-control col mr-2\\" spellcheck=\\"false\\" placeholder=\\"RSS link\\">
+            <button type=\\"submit\\" class=\\"btn btn btn-outline-primary d-flex align-items-center\\" disabled=\\"true\\">Add</button>
+            <div class=\\"invalid-feedback\\" id=\\"feedback\\"></div>
+        </form>
+    </div>
+</div>
+<div class=\\"container-fluid\\">
+    <div class=\\"row\\">
+        <div class=\\"col col-3 p-0\\" id=\\"feeds\\">
+            <div class=\\"list-group list-group-flush border-right\\">
+                <div class=\\"list-group-item\\">
+                    <h5 class=\\"mb-1\\">Lorem ipsum feed for an interval of 1 minutes</h5>
+                    <p class=\\"mb-1\\">This is a constantly updating lorem ipsum feed</p>
+                </div>
+            </div>
+        </div>
+        <div class=\\"col col-8\\" id=\\"posts\\">
+            <ul class=\\"list-group list-group-flush overflow-auto\\">
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637920\\">Veniam occaecat qui irure mollit ea ex pariatur.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637860\\">Do reprehenderit nostrud deserunt aliqua aliqua fugiat labore ullamco.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637800\\">Veniam magna qui mollit ea ex pariatur.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637740\\">Do nostrud laborum aliqua fugiat magna labore ullamco.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637680\\">Veniam magna occaecat qui irure mollit ea consequat ex pariatur.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637620\\">Do reprehenderit nostrud laborum deserunt aliqua aliqua fugiat magna labore ullamco.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637560\\">Qui amet et in pariatur et nostrud quis do id.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637500\\">Tempor magna non duis sint deserunt pariatur adipisicing elit.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637440\\">Incididunt consequat reprehenderit sit adipisicing voluptate sint consequat.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637380\\">Labore aliqua incididunt duis voluptate reprehenderit officia est mollit voluptate velit consectetur nulla velit.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637320\\">Voluptate deserunt elit consectetur tempor dolore ut dolor ex ullamco sunt aliquip esse sit.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637260\\">Eu adipisicing nostrud tempor voluptate commodo laboris eiusmod voluptate ex.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637200\\">Sint anim reprehenderit elit commodo.</a></li>
+                <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637140\\">Ea officia veniam dolore adipisicing nulla esse aliqua.</a></li>
+            </ul>
+        </div>
+    </div>
+</div>"
+`;

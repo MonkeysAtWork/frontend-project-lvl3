@@ -6,20 +6,20 @@
 </head>
 
 <body>
-  <div class="jumbotron sticky-top pt-2 pb-3">
-    <h1 class="display-5 ">RSS aggregator</h1>
-    <div style="max-width: 550px">
-    <form class="form-inline" id="rssAddForm">
-      <input type="text" name="link" class="form-control col mr-2" spellcheck="false" placeholder="RSS link">
-      <button type="submit" class="btn btn btn-outline-primary d-flex align-items-center" disabled>Add</button>
-      <div class="invalid-feedback" id="feedback"></div>
-    </form>
-  </div>
-  </div>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col col-4" id="feeds"></div>
-      <div class="col col-8" id="posts"></div>
+    <div class="jumbotron pt-2 pb-3 mb-0" id="header">
+      <h1 class="display-5 ">RSS aggregator</h1>
+      <div id="formConteiner">
+        <form class="form-inline" id="rssAddForm">
+          <input type="text" name="link" class="form-control col mr-2" spellcheck="false" placeholder="RSS link">
+          <button type="submit" class="btn btn btn-outline-primary d-flex align-items-center" disabled>Add</button>
+          <div class="invalid-feedback" id="feedback"></div>
+        </form>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col col-3 p-0" id="feeds"></div>
+        <div class="col col-8" id="posts"></div>
       </div>
     </div>
 </body>

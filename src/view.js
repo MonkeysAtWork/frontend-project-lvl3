@@ -8,7 +8,6 @@ export default (state, inputHandler, submitHandler) => {
     resources: {
       en: {
         translation: {
-          title: 'Rss aggregator',
           errors: {
             unreachableURL: 'URL is unreachable',
             invalidURL: 'URL is not correct',
@@ -21,11 +20,11 @@ export default (state, inputHandler, submitHandler) => {
     },
   }).then((t) => {
     const formElement = document.querySelector('#rssAddForm');
+    const linkField = formElement.elements.link;
     const submitButton = document.querySelector('.btn');
     const feedbackDiv = document.querySelector('#feedback');
     const feedsConteiner = document.querySelector('#feeds');
     const postsConteiner = document.querySelector('#posts');
-
 
     formElement.addEventListener('input', inputHandler);
     formElement.addEventListener('submit', submitHandler);
@@ -38,16 +37,16 @@ export default (state, inputHandler, submitHandler) => {
       const { formState } = state.form;
       switch (formState) {
         case ('processing'):
-          formElement.elements.link.setAttribute('disabled', 'true');
-          submitButton.setAttribute('disabled', 'true');
+          linkField.setAttribute('disabled', true);
+          submitButton.setAttribute('disabled', true);
           submitButton.prepend(spinner);
           break;
         case ('filling'):
-          formElement.elements.link.removeAttribute('disabled');
+          linkField.removeAttribute('disabled');
           spinner.remove();
           break;
         default:
-          throw new Error(i18next.t('errors.unknownState', { formState }));
+          throw new Error(t('errors.unknownState', { formState }));
       }
     });
 
@@ -55,9 +54,9 @@ export default (state, inputHandler, submitHandler) => {
     watch(state.form, 'url', () => {
       if (!state.form.url) {
         formElement.reset();
-        submitButton.setAttribute('disabled', 'true');
+        submitButton.setAttribute('disabled', true);
       } else if (state.form.errors) {
-        submitButton.setAttribute('disabled', 'true');
+        submitButton.setAttribute('disabled', true);
       } else {
         submitButton.removeAttribute('disabled');
       }
@@ -67,11 +66,11 @@ export default (state, inputHandler, submitHandler) => {
     watch(state.form, 'errors', () => {
       if (state.form.errors) {
         feedbackDiv.innerHTML = t(state.form.errors);
-        formElement.elements.link.classList.add('is-invalid');
-        submitButton.setAttribute('disabled', 'true');
-        formElement.elements.link.focus();
+        linkField.classList.add('is-invalid');
+        submitButton.setAttribute('disabled', true);
+        linkField.focus();
       } else {
-        formElement.elements.link.classList.remove('is-invalid');
+        linkField.classList.remove('is-invalid');
         feedbackDiv.innerHTML = '';
       }
     });
@@ -83,7 +82,7 @@ export default (state, inputHandler, submitHandler) => {
     );
 
 
-    watch(state, 'feedsList', () => {
+    watch(state, 'postsList', () => {
       feedsConteiner.innerHTML = '';
 
       const divForFeeds = document.createElement('div');
@@ -108,7 +107,7 @@ export default (state, inputHandler, submitHandler) => {
         li.classList.add('list-group-item');
         const a = document.createElement('a');
         a.href = link;
-        a.textContent = content;
+        a.innerHTML = content;
         li.append(a);
         ulForPosts.append(li);
       });
