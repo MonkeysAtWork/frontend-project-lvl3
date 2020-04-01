@@ -1,6 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-
 exports[`correct URL twice 1`] = `
 "<div class=\\"jumbotron pt-2 pb-3 mb-0\\" id=\\"header\\">
     <h1 class=\\"display-5 \\">RSS aggregator</h1>

@@ -20,10 +20,24 @@ const response = fs.readFileSync(path.join(fixturesPath, 'rss_0.xml'), 'utf-8');
 const url = 'http://www.test.com';
 const inputEvent = new Event('input', { bubbles: true });
 const submitEvent = new Event('submit');
+let form;
+let input;
 
 
 const delay = time => new Promise(resolve => setTimeout(resolve, time));
 const getTree = () => html(document.body.innerHTML);
+
+const inputValue = (value) => {
+  input.value = value;
+  input.dispatchEvent(inputEvent);
+  return delay(10);
+};
+
+const submitForm = () => {
+  form.dispatchEvent(submitEvent);
+  return delay(300);
+};
+
 nock('https://cors-anywhere.herokuapp.com')
   // .log(console.log)
   .get(/undefined$/)
@@ -37,9 +51,6 @@ nock('https://cors-anywhere.herokuapp.com')
   .reply(200, response);
 
 
-let form;
-let input;
-
 beforeEach(() => {
   const initHtml = fs.readFileSync(path.join(fixturesPath, 'index.html'), 'utf-8');
   document.documentElement.innerHTML = initHtml;
@@ -49,59 +60,30 @@ beforeEach(() => {
 });
 
 
-test('invalid URL', () => {
-  input.value = 'uncorrect';
-  input.dispatchEvent(inputEvent);
-  return delay(10)
-    .then(() => expect(getTree()).toMatchSnapshot());
-});
+test('invalid URL', () => inputValue('uncorrect')
+  .then(() => expect(getTree()).toMatchSnapshot()));
 
 
-test('uncorrect URL', () => {
-  input.value = `${url}/undefined`;
-  input.dispatchEvent(inputEvent);
-  return delay(10)
-    .then(() => expect(getTree()).toMatchSnapshot())
-    .then(() => form.dispatchEvent(submitEvent))
-    .then(() => delay(300))
-    .then(() => expect(getTree()).toMatchSnapshot());
-});
+test('uncorrect URL', () => inputValue(`${url}/undefined`)
+  .then(() => expect(getTree()).toMatchSnapshot())
+  .then(submitForm)
+  .then(() => expect(getTree()).toMatchSnapshot()));
 
 
-test('network error', () => {
-  input.value = `${url}/404`;
-  input.dispatchEvent(inputEvent);
-  return delay(10)
-    .then(() => expect(getTree()).toMatchSnapshot())
-    .then(() => form.dispatchEvent(submitEvent))
-    .then(() => delay(300))
-    .then(() => expect(getTree()).toMatchSnapshot());
-});
+test('network error', () => inputValue(`${url}/404`)
+  .then(() => expect(getTree()).toMatchSnapshot())
+  .then(submitForm)
+  .then(() => expect(getTree()).toMatchSnapshot()));
 
 
-test('no feed on URL', () => {
-  input.value = `${url}/nofeed`;
-  input.dispatchEvent(inputEvent);
-  return delay(10)
-    .then(() => form.dispatchEvent(submitEvent))
-    .then(() => delay(300))
-    .then(() => expect(getTree()).toMatchSnapshot());
-});
+test('no feed on URL', () => inputValue(`${url}/nofeed`)
+  .then(submitForm)
+  .then(() => expect(getTree()).toMatchSnapshot()));
 
 
-test('correct URL twice', () => {
-  input.value = `${url}/feed`;
-  input.dispatchEvent(inputEvent);
-  return delay(10)
-    .then(() => form.dispatchEvent(submitEvent))
-    .then(() => delay(300))
-    .then(() => expect(getTree()).toMatchSnapshot())
-    .then(() => {
-      input.value = `${url}/feed`;
-      input.dispatchEvent(inputEvent);
-    })
-    .then(() => delay(10))
-    .then(() => form.dispatchEvent(submitEvent))
-    .then(() => delay(300))
-    .then(() => expect(getTree()).toMatchSnapshot());
-});
+test('correct URL twice', () => inputValue(`${url}/feed`)
+  .then(submitForm)
+  .then(() => expect(getTree()).toMatchSnapshot())
+  .then(() => inputValue(`${url}/feed`))
+  .then(submitForm)
+  .then(() => expect(getTree()).toMatchSnapshot()));
