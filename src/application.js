@@ -6,6 +6,14 @@ import * as yup from 'yup';
 import view from './view';
 
 
+const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+const makeAutoRequestLoop = (payload, ms) => wait(ms)
+  .then(payload)
+  .then(() => makeAutoRequestLoop(payload, ms))
+  .catch(() => makeAutoRequestLoop(payload, ms));
+
+
 const validate = value => yup.string().url().validate(value);
 
 
@@ -21,16 +29,6 @@ const makeRequest = (url) => {
       throw new Error('errors.unreachableURL');
     });
   return promise;
-};
-
-
-const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
-
-const makeAutoRequestLoop = (funk, ms) => {
-  wait(ms)
-    .then(funk)
-    .then(() => makeAutoRequestLoop(funk, ms))
-    .catch(() => makeAutoRequestLoop(funk, ms));
 };
 
 
@@ -55,32 +53,19 @@ const parseRSS = (data) => {
 };
 
 
-const getNewPosts = (posts, currentFeedId, postsList) => {
-  const addingPosts = postsList.filter(({ id }) => id === currentFeedId);
-  const newPosts = _.differenceBy(posts, addingPosts, 'link');
-  return newPosts;
-};
+const addIdToPostsList = (posts, id) => posts.map(post => ({ ...post, id }));
 
-const getFeedContent = (feed, state, isItAutoRequest) => {
-  const { title, description, posts } = feed;
-  const existingFeed = _.find(state.feedsList, { title });
-  if (!isItAutoRequest && existingFeed) {
-    throw new Error('errors.repeatURL');
-  }
-  let newPosts;
-  let newFeed;
-  let id;
-  if (existingFeed) {
-    id = existingFeed.id; // eslint-disable-line prefer-destructuring
-    newFeed = [];
-    newPosts = getNewPosts(posts, id, state.postsList);
-  } else {
-    id = _.uniqueId();
-    newFeed = [{ title, description, id }];
-    newPosts = posts;
-  }
-  newPosts = newPosts.map(post => ({ ...post, id }));
-  return { newPosts, newFeed };
+
+const getNewPosts = (feed, postsList) => {
+  const { url, id } = feed;
+  return makeRequest(url)
+    .then((data) => {
+      const { posts } = parseRSS(data);
+      const addingPosts = postsList.filter(post => post.id === id);
+      const newPosts = _.differenceBy(posts, addingPosts, 'link');
+      return addIdToPostsList(newPosts, id);
+    })
+    .catch(() => []);
 };
 
 
@@ -109,24 +94,25 @@ export default () => {
   };
 
 
-  const handleUrl = (url, isAutoRequest = false) => makeRequest(url)
-    .then((data) => {
-      const feed = parseRSS(data);
-      const { newFeed, newPosts } = getFeedContent(feed, state, isAutoRequest);
-      state.feedsList.unshift(...newFeed);
-      state.postsList.unshift(...newPosts);
-    });
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    state.form.formState = 'processing';
     const { url } = state.form;
-    handleUrl(url)
-      .then(() => {
+    state.form.formState = 'processing';
+    makeRequest(url)
+      .then((data) => {
+        const { title, description, posts } = parseRSS(data);
+        const wasAddBefore = _.some(state.feedsList, { title });
+        if (wasAddBefore) {
+          throw new Error('errors.repeatURL');
+        }
+        const id = _.uniqueId();
+        const newFeed = { title, description, id, url }; // eslint-disable-line object-curly-newline
+        const newPosts = addIdToPostsList(posts, id);
+
+        state.feedsList.unshift(newFeed);
+        state.postsList.unshift(...newPosts);
         state.form.url = '';
         state.form.formState = 'filling';
-        makeAutoRequestLoop(() => handleUrl(url, true), 5000);
       })
       .catch((err) => {
         state.form.formState = 'filling';
@@ -134,5 +120,16 @@ export default () => {
       });
   };
 
+
+  const updateFeeds = () => {
+    const newPostsPromises = state.feedsList.map(feed => getNewPosts(feed, state.postsList));
+    Promise.all(newPostsPromises)
+      .then(allNewPosts => allNewPosts
+        .filter(posts => posts.length > 0)
+        .forEach(posts => state.postsList.unshift(...posts)));
+  };
+
+
+  makeAutoRequestLoop(updateFeeds, 5000);
   view(state, handleInput, handleSubmit);
 };
