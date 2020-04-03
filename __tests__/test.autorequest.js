@@ -10,11 +10,6 @@ nock.disableNetConnect();
 
 const fixturesPath = path.join(__dirname, '__fixtures__');
 
-beforeAll(() => {
-  const pathToTemplate = path.join(__dirname, '..', 'template.html');
-  const pathToIndex = path.join(fixturesPath, 'index.html');
-  fs.copyFileSync(pathToTemplate, pathToIndex);
-});
 
 const initHtml = fs.readFileSync(path.join(fixturesPath, 'index.html'), 'utf-8');
 document.documentElement.innerHTML = initHtml;

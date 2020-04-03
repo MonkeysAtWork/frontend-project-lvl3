@@ -6,10 +6,10 @@
 </head>
 
 <body>
-    <div class="jumbotron pt-2 pb-3 mb-0" id="header">
-      <h1 class="display-5 ">RSS aggregator</h1>
+    <div class="jumbotron sticky-top pt-2 pb-3 mb-0" style="z-index: 100;">
+      <h1 class="display-5">RSS aggregator</h1>
       <div id="formConteiner">
-        <form class="form-inline" id="rssAddForm">
+        <form class="form-inline" id="rssAddForm" style="max-width: 550px">
           <input type="text" name="link" class="form-control col mr-2" spellcheck="false" placeholder="RSS link">
           <button type="submit" class="btn btn btn-outline-primary d-flex align-items-center" disabled>Add</button>
           <div class="invalid-feedback" id="feedback"></div>
@@ -18,7 +18,7 @@
     </div>
     <div class="container-fluid">
       <div class="row">
-        <div class="col col-3 p-0" id="feeds"></div>
+        <div class="col col-3 p-0 sticky-top" id="feeds" style="top: 118px; z-index: 99; height: calc(100vh - 118px); overflow-y: auto;"></div>
         <div class="col col-8" id="posts"></div>
       </div>
     </div>

@@ -10,11 +10,6 @@ nock.disableNetConnect();
 
 const fixturesPath = path.join(__dirname, '__fixtures__');
 
-beforeAll(() => {
-  const pathToTemplate = path.join(__dirname, '..', 'template.html');
-  const pathToIndex = path.join(fixturesPath, 'index.html');
-  fs.copyFileSync(pathToTemplate, pathToIndex);
-});
 
 const response = fs.readFileSync(path.join(fixturesPath, 'rss_0.xml'), 'utf-8');
 const url = 'http://www.test.com';

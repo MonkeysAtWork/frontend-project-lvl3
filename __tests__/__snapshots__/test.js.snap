@@ -1,19 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`correct URL twice 1`] = `
-"<div class=\\"jumbotron pt-2 pb-3 mb-0\\" id=\\"header\\">
-    <h1 class=\\"display-5 \\">RSS aggregator</h1>
+"<div class=\\"jumbotron\\" id=\\"header\\">
+    <h1 class=\\"display-5\\">RSS aggregator</h1>
     <div id=\\"formConteiner\\">
         <form class=\\"form-inline\\" id=\\"rssAddForm\\">
-            <input type=\\"text\\" name=\\"link\\" class=\\"form-control col mr-2\\" spellcheck=\\"false\\" placeholder=\\"RSS link\\">
-            <button type=\\"submit\\" class=\\"btn btn btn-outline-primary d-flex align-items-center\\" disabled=\\"true\\">Add</button>
+            <input type=\\"text\\" name=\\"link\\" class=\\"form-control\\" spellcheck=\\"false\\" placeholder=\\"RSS link\\">
+            <button type=\\"submit\\" class=\\"btn\\" disabled=\\"true\\">Add</button>
             <div class=\\"invalid-feedback\\" id=\\"feedback\\"></div>
         </form>
     </div>
 </div>
 <div class=\\"container-fluid\\">
     <div class=\\"row\\">
-        <div class=\\"col col-3 p-0\\" id=\\"feeds\\">
+        <div class=\\"col\\" id=\\"feeds\\">
             <div class=\\"list-group list-group-flush border-right\\">
                 <div class=\\"list-group-item\\">
                     <h5 class=\\"mb-1\\">Lorem ipsum feed for an interval of 1 minutes</h5>
@@ -21,7 +21,7 @@ exports[`correct URL twice 1`] = `
                 </div>
             </div>
         </div>
-        <div class=\\"col col-8\\" id=\\"posts\\">
+        <div class=\\"col\\" id=\\"posts\\">
             <ul class=\\"list-group list-group-flush overflow-auto\\">
                 <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637680\\">Veniam magna occaecat qui irure mollit ea consequat ex pariatur.</a></li>
                 <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637620\\">Do reprehenderit nostrud laborum deserunt aliqua aliqua fugiat magna labore ullamco.</a></li>
@@ -40,19 +40,19 @@ exports[`correct URL twice 1`] = `
 `;
 
 exports[`correct URL twice 2`] = `
-"<div class=\\"jumbotron pt-2 pb-3 mb-0\\" id=\\"header\\">
-    <h1 class=\\"display-5 \\">RSS aggregator</h1>
+"<div class=\\"jumbotron\\" id=\\"header\\">
+    <h1 class=\\"display-5\\">RSS aggregator</h1>
     <div id=\\"formConteiner\\">
         <form class=\\"form-inline\\" id=\\"rssAddForm\\">
-            <input type=\\"text\\" name=\\"link\\" class=\\"form-control col mr-2 is-invalid\\" spellcheck=\\"false\\" placeholder=\\"RSS link\\">
-            <button type=\\"submit\\" class=\\"btn btn btn-outline-primary d-flex align-items-center\\" disabled=\\"true\\">Add</button>
+            <input type=\\"text\\" name=\\"link\\" class=\\"form-control is-invalid\\" spellcheck=\\"false\\" placeholder=\\"RSS link\\">
+            <button type=\\"submit\\" class=\\"btn\\" disabled=\\"true\\">Add</button>
             <div class=\\"invalid-feedback\\" id=\\"feedback\\">this feed already was added</div>
         </form>
     </div>
 </div>
 <div class=\\"container-fluid\\">
     <div class=\\"row\\">
-        <div class=\\"col col-3 p-0\\" id=\\"feeds\\">
+        <div class=\\"col\\" id=\\"feeds\\">
             <div class=\\"list-group list-group-flush border-right\\">
                 <div class=\\"list-group-item\\">
                     <h5 class=\\"mb-1\\">Lorem ipsum feed for an interval of 1 minutes</h5>
@@ -60,7 +60,7 @@ exports[`correct URL twice 2`] = `
                 </div>
             </div>
         </div>
-        <div class=\\"col col-8\\" id=\\"posts\\">
+        <div class=\\"col\\" id=\\"posts\\">
             <ul class=\\"list-group list-group-flush overflow-auto\\">
                 <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637680\\">Veniam magna occaecat qui irure mollit ea consequat ex pariatur.</a></li>
                 <li class=\\"list-group-item\\"><a href=\\"http://example.com/test/1584637620\\">Do reprehenderit nostrud laborum deserunt aliqua aliqua fugiat magna labore ullamco.</a></li>
@@ -79,115 +79,115 @@ exports[`correct URL twice 2`] = `
 `;
 
 exports[`invalid URL 1`] = `
-"<div class=\\"jumbotron pt-2 pb-3 mb-0\\" id=\\"header\\">
-    <h1 class=\\"display-5 \\">RSS aggregator</h1>
+"<div class=\\"jumbotron\\" id=\\"header\\">
+    <h1 class=\\"display-5\\">RSS aggregator</h1>
     <div id=\\"formConteiner\\">
         <form class=\\"form-inline\\" id=\\"rssAddForm\\">
-            <input type=\\"text\\" name=\\"link\\" class=\\"form-control col mr-2 is-invalid\\" spellcheck=\\"false\\" placeholder=\\"RSS link\\">
-            <button type=\\"submit\\" class=\\"btn btn btn-outline-primary d-flex align-items-center\\" disabled=\\"true\\">Add</button>
+            <input type=\\"text\\" name=\\"link\\" class=\\"form-control is-invalid\\" spellcheck=\\"false\\" placeholder=\\"RSS link\\">
+            <button type=\\"submit\\" class=\\"btn\\" disabled=\\"true\\">Add</button>
             <div class=\\"invalid-feedback\\" id=\\"feedback\\">URL is not correct</div>
         </form>
     </div>
 </div>
 <div class=\\"container-fluid\\">
     <div class=\\"row\\">
-        <div class=\\"col col-3 p-0\\" id=\\"feeds\\"></div>
-        <div class=\\"col col-8\\" id=\\"posts\\"></div>
+        <div class=\\"col\\" id=\\"feeds\\"></div>
+        <div class=\\"col\\" id=\\"posts\\"></div>
     </div>
 </div>"
 `;
 
 exports[`network error 1`] = `
-"<div class=\\"jumbotron pt-2 pb-3 mb-0\\" id=\\"header\\">
-    <h1 class=\\"display-5 \\">RSS aggregator</h1>
+"<div class=\\"jumbotron\\" id=\\"header\\">
+    <h1 class=\\"display-5\\">RSS aggregator</h1>
     <div id=\\"formConteiner\\">
         <form class=\\"form-inline\\" id=\\"rssAddForm\\">
-            <input type=\\"text\\" name=\\"link\\" class=\\"form-control col mr-2\\" spellcheck=\\"false\\" placeholder=\\"RSS link\\">
-            <button type=\\"submit\\" class=\\"btn btn btn-outline-primary d-flex align-items-center\\">Add</button>
+            <input type=\\"text\\" name=\\"link\\" class=\\"form-control\\" spellcheck=\\"false\\" placeholder=\\"RSS link\\">
+            <button type=\\"submit\\" class=\\"btn\\">Add</button>
             <div class=\\"invalid-feedback\\" id=\\"feedback\\"></div>
         </form>
     </div>
 </div>
 <div class=\\"container-fluid\\">
     <div class=\\"row\\">
-        <div class=\\"col col-3 p-0\\" id=\\"feeds\\"></div>
-        <div class=\\"col col-8\\" id=\\"posts\\"></div>
+        <div class=\\"col\\" id=\\"feeds\\"></div>
+        <div class=\\"col\\" id=\\"posts\\"></div>
     </div>
 </div>"
 `;
 
 exports[`network error 2`] = `
-"<div class=\\"jumbotron pt-2 pb-3 mb-0\\" id=\\"header\\">
-    <h1 class=\\"display-5 \\">RSS aggregator</h1>
+"<div class=\\"jumbotron\\" id=\\"header\\">
+    <h1 class=\\"display-5\\">RSS aggregator</h1>
     <div id=\\"formConteiner\\">
         <form class=\\"form-inline\\" id=\\"rssAddForm\\">
-            <input type=\\"text\\" name=\\"link\\" class=\\"form-control col mr-2 is-invalid\\" spellcheck=\\"false\\" placeholder=\\"RSS link\\">
-            <button type=\\"submit\\" class=\\"btn btn btn-outline-primary d-flex align-items-center\\" disabled=\\"true\\">Add</button>
+            <input type=\\"text\\" name=\\"link\\" class=\\"form-control is-invalid\\" spellcheck=\\"false\\" placeholder=\\"RSS link\\">
+            <button type=\\"submit\\" class=\\"btn\\" disabled=\\"true\\">Add</button>
             <div class=\\"invalid-feedback\\" id=\\"feedback\\">URL is unreachable</div>
         </form>
     </div>
 </div>
 <div class=\\"container-fluid\\">
     <div class=\\"row\\">
-        <div class=\\"col col-3 p-0\\" id=\\"feeds\\"></div>
-        <div class=\\"col col-8\\" id=\\"posts\\"></div>
+        <div class=\\"col\\" id=\\"feeds\\"></div>
+        <div class=\\"col\\" id=\\"posts\\"></div>
     </div>
 </div>"
 `;
 
 exports[`no feed on URL 1`] = `
-"<div class=\\"jumbotron pt-2 pb-3 mb-0\\" id=\\"header\\">
-    <h1 class=\\"display-5 \\">RSS aggregator</h1>
+"<div class=\\"jumbotron\\" id=\\"header\\">
+    <h1 class=\\"display-5\\">RSS aggregator</h1>
     <div id=\\"formConteiner\\">
         <form class=\\"form-inline\\" id=\\"rssAddForm\\">
-            <input type=\\"text\\" name=\\"link\\" class=\\"form-control col mr-2 is-invalid\\" spellcheck=\\"false\\" placeholder=\\"RSS link\\">
-            <button type=\\"submit\\" class=\\"btn btn btn-outline-primary d-flex align-items-center\\" disabled=\\"true\\">Add</button>
+            <input type=\\"text\\" name=\\"link\\" class=\\"form-control is-invalid\\" spellcheck=\\"false\\" placeholder=\\"RSS link\\">
+            <button type=\\"submit\\" class=\\"btn\\" disabled=\\"true\\">Add</button>
             <div class=\\"invalid-feedback\\" id=\\"feedback\\">No feeds were found for this URL</div>
         </form>
     </div>
 </div>
 <div class=\\"container-fluid\\">
     <div class=\\"row\\">
-        <div class=\\"col col-3 p-0\\" id=\\"feeds\\"></div>
-        <div class=\\"col col-8\\" id=\\"posts\\"></div>
+        <div class=\\"col\\" id=\\"feeds\\"></div>
+        <div class=\\"col\\" id=\\"posts\\"></div>
     </div>
 </div>"
 `;
 
 exports[`uncorrect URL 1`] = `
-"<div class=\\"jumbotron pt-2 pb-3 mb-0\\" id=\\"header\\">
-    <h1 class=\\"display-5 \\">RSS aggregator</h1>
+"<div class=\\"jumbotron\\" id=\\"header\\">
+    <h1 class=\\"display-5\\">RSS aggregator</h1>
     <div id=\\"formConteiner\\">
         <form class=\\"form-inline\\" id=\\"rssAddForm\\">
-            <input type=\\"text\\" name=\\"link\\" class=\\"form-control col mr-2\\" spellcheck=\\"false\\" placeholder=\\"RSS link\\">
-            <button type=\\"submit\\" class=\\"btn btn btn-outline-primary d-flex align-items-center\\">Add</button>
+            <input type=\\"text\\" name=\\"link\\" class=\\"form-control\\" spellcheck=\\"false\\" placeholder=\\"RSS link\\">
+            <button type=\\"submit\\" class=\\"btn\\">Add</button>
             <div class=\\"invalid-feedback\\" id=\\"feedback\\"></div>
         </form>
     </div>
 </div>
 <div class=\\"container-fluid\\">
     <div class=\\"row\\">
-        <div class=\\"col col-3 p-0\\" id=\\"feeds\\"></div>
-        <div class=\\"col col-8\\" id=\\"posts\\"></div>
+        <div class=\\"col\\" id=\\"feeds\\"></div>
+        <div class=\\"col\\" id=\\"posts\\"></div>
     </div>
 </div>"
 `;
 
 exports[`uncorrect URL 2`] = `
-"<div class=\\"jumbotron pt-2 pb-3 mb-0\\" id=\\"header\\">
-    <h1 class=\\"display-5 \\">RSS aggregator</h1>
+"<div class=\\"jumbotron\\" id=\\"header\\">
+    <h1 class=\\"display-5\\">RSS aggregator</h1>
     <div id=\\"formConteiner\\">
         <form class=\\"form-inline\\" id=\\"rssAddForm\\">
-            <input type=\\"text\\" name=\\"link\\" class=\\"form-control col mr-2 is-invalid\\" spellcheck=\\"false\\" placeholder=\\"RSS link\\">
-            <button type=\\"submit\\" class=\\"btn btn btn-outline-primary d-flex align-items-center\\" disabled=\\"true\\">Add</button>
+            <input type=\\"text\\" name=\\"link\\" class=\\"form-control is-invalid\\" spellcheck=\\"false\\" placeholder=\\"RSS link\\">
+            <button type=\\"submit\\" class=\\"btn\\" disabled=\\"true\\">Add</button>
             <div class=\\"invalid-feedback\\" id=\\"feedback\\">URL is unreachable</div>
         </form>
     </div>
 </div>
 <div class=\\"container-fluid\\">
     <div class=\\"row\\">
-        <div class=\\"col col-3 p-0\\" id=\\"feeds\\"></div>
-        <div class=\\"col col-8\\" id=\\"posts\\"></div>
+        <div class=\\"col\\" id=\\"feeds\\"></div>
+        <div class=\\"col\\" id=\\"posts\\"></div>
     </div>
 </div>"
 `;
