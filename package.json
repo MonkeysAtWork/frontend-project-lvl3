@@ -1,13 +1,8 @@
 {
   "name": "project3-sergey-sh",
   "version": "0.0.1",
-  "description": "",
   "scripts": {
-    "test": "jest",
-    "watch": "jest --watchAll",
-    "build": "NODE_ENV=production npx webpack",
-    "dev": "npx webpack",
-    "start": "npx webpack-dev-server --open"
+    "test": "jest"
   },
   "repository": {
     "type": "git",

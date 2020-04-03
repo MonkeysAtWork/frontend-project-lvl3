@@ -36,15 +36,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: [
-          'babel-loader',
-          {
-            loader: 'eslint-loader',
-            options: {
-              emitWarning: true,
-            },
-          },
-        ],
+        use: 'babel-loader',
       },
       {
         test: /\.css$/,

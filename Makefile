@@ -1,27 +1,23 @@
-install: install-deps install-flow-typed
-
-develop:
-	npx webpack-dev-server
+install: install-deps
 
 install-deps:
-	npm install
+	npm ci
 
-start:
-	npm run start
-
-dev:
-	rm -rf dist
-	npm run dev
+develop:
+	npx webpack-dev-server --open
 
 build:
 	rm -rf dist
-	npm run build
+	NODE_ENV=production npx webpack
 
 test:
 	npm test
 
 test-watch:
-	npm run watch
+	npm test -- --watchAll
+
+test-coverage:
+	npm test -- --coverage
 
 lint:
 	npx eslint .

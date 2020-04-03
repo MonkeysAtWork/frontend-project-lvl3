@@ -8,10 +8,10 @@ import view from './view';
 
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-const makeAutoRequestLoop = (payload, ms) => wait(ms)
-  .then(payload)
-  .then(() => makeAutoRequestLoop(payload, ms))
-  .catch(() => makeAutoRequestLoop(payload, ms));
+const makeAutoRequestLoop = (func, ms) => wait(ms)
+  .then(func)
+  .then(() => makeAutoRequestLoop(func, ms))
+  .catch(() => makeAutoRequestLoop(func, ms));
 
 
 const validate = value => yup.string().url().validate(value);

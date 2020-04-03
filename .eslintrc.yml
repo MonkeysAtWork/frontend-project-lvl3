@@ -6,7 +6,6 @@ plugins:
 
 env:
   node: true
-  jest/globals: true
   browser: true
 
 parser: babel-eslint
