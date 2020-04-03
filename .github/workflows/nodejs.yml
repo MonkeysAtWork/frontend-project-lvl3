@@ -51,11 +51,14 @@ jobs:
 
     steps:
     - name: Checkout the repository
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
     - name: Deploy on Zeit
-      uses: artemis-tech/zeit-now-cli@v1
-      env:
-        ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
-      with:
-        args: --prod
-
+      uses: amondnet/now-deployment@v2
+        with:
+          zeit-token: ${{ secrets.ZEIT_TOKEN }} # Required
+          # github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
+          # zeit-team-id: team_XXXXXXXXXXX #Optional 
+          now-args: '--prod' #Optional
+          now-org-id: ${{ secrets.NOW_ORG_ID}}  #Required
+          now-project-id: ${{ secrets.NOW_PROJECT_ID}} #Required 
+          # working-directory: ./sub-directory
