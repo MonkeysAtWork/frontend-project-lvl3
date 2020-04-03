@@ -8,7 +8,7 @@ develop:
 
 build:
 	rm -rf dist
-	NODE_ENV=production npx webpack
+	npm run build
 
 test:
 	npm test

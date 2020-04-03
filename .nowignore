@@ -1,5 +1,6 @@
 /__tests__/
 /dist/
+.git*
 README.md
-.travis.yml
+.eslint*
 Makefile
