@@ -53,7 +53,9 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v1
       - name: Deploy on Zeit
-        uses: actions/zeit-now@master
+        uses: artemis-tech/zeit-now-cli@v1
         env:
           ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
+        with:
+          args: --prod
 
