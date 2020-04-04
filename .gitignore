@@ -2,4 +2,4 @@
 *.log
 dist
 assets
-.now
+.now*

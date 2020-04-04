@@ -1,5 +1,4 @@
 /__tests__/
-/dist/
 .git*
 README.md
 .eslint*
