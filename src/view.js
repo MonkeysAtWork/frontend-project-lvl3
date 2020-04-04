@@ -50,6 +50,8 @@ export default (state, inputHandler, submitHandler) => {
       }
     });
 
+    console.log('test')
+
 
     watch(state.form, 'url', () => {
       if (!state.form.url) {
