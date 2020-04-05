@@ -9,7 +9,7 @@ on:
       - master
 
 jobs:
-  build:
+  test:
 
     runs-on: ubuntu-latest
 
@@ -37,34 +37,29 @@ jobs:
       with:
         coverageCommand: make test-coverage
         debug: true
-    - name: Build
-      run: npm run build
 
-  deploy:
-
-    name: deploy to production
+  build_and_deploy:
 
     runs-on: ubuntu-latest
 
-    needs: build
+    needs: test
 
     steps:
     - name: Checkout the repository
       uses: actions/checkout@v2
-    - name: Deploy on Zeit
-      uses: amondnet/now-deployment@v2
-      id: now-deployment-staging
+    - name: Build
+      run: npm run build
+    - name: Deploy on Zeit staging
       if: github.event_name == 'pull_request'
+      uses: amondnet/now-deployment@v2
       with:
-        # github-token: ${{ secrets.GITHUB_TOKEN }}
         zeit-token: ${{ secrets.ZEIT_TOKEN }}
         now-org-id: ${{ secrets.NOW_ORG_ID }}
         now-project-id: ${{ secrets.NOW_PROJECT_ID }}
-      uses: amondnet/now-deployment@v2
-      id: now-deployment-production
+    - name: Deploy on Zeit production
       if: github.event_name == 'push'
+      uses: amondnet/now-deployment@v2
       with:
-        # github-token: ${{ secrets.GITHUB_TOKEN }}
         zeit-token: ${{ secrets.ZEIT_TOKEN }}
         now-org-id: ${{ secrets.NOW_ORG_ID }}
         now-project-id: ${{ secrets.NOW_PROJECT_ID }}
