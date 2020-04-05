@@ -5,4 +5,4 @@
 [![Node CI](https://github.com/MonkeysAtWork/frontend-project-lvl3/workflows/Node%20CI/badge.svg)](https://github.com/MonkeysAtWork/frontend-project-lvl3//actions)
 
 ##
-This repository is an educational project. Visit site: [RSS-aggregator](https://rss-aggregator.now.sh).
+This repository is an educational project. Website: [RSS-aggregator](https://rss-aggregator.now.sh).
