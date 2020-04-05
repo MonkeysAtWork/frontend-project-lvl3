@@ -33,9 +33,17 @@ export default (state, inputHandler, submitHandler) => {
     const spinner = document.createElement('span');
     spinner.classList.add('spinner-border', 'text-primary', 'spinner-border-sm', 'mr-1');
 
-    watch(state.form, 'formState', () => {
+    watch(state.form, () => {
       const { formState } = state.form;
       switch (formState) {
+        case ('empty'):
+          submitButton.setAttribute('disabled', true);
+          linkField.removeAttribute('disabled');
+          formElement.reset();
+          spinner.remove();
+          linkField.classList.remove('is-invalid');
+          feedbackDiv.innerHTML = '';
+          break;
         case ('processing'):
           linkField.setAttribute('disabled', true);
           submitButton.setAttribute('disabled', true);
@@ -44,34 +52,19 @@ export default (state, inputHandler, submitHandler) => {
         case ('filling'):
           linkField.removeAttribute('disabled');
           spinner.remove();
+          if (state.form.errors) {
+            feedbackDiv.innerHTML = t(state.form.errors);
+            linkField.classList.add('is-invalid');
+            submitButton.setAttribute('disabled', true);
+            linkField.focus();
+          } else {
+            linkField.classList.remove('is-invalid');
+            submitButton.removeAttribute('disabled');
+            feedbackDiv.innerHTML = '';
+          }
           break;
         default:
           throw new Error(t('errors.unknownState', { formState }));
-      }
-    });
-
-
-    watch(state.form, 'url', () => {
-      if (!state.form.url) {
-        formElement.reset();
-        submitButton.setAttribute('disabled', true);
-      } else if (state.form.errors) {
-        submitButton.setAttribute('disabled', true);
-      } else {
-        submitButton.removeAttribute('disabled');
-      }
-    });
-
-
-    watch(state.form, 'errors', () => {
-      if (state.form.errors) {
-        feedbackDiv.innerHTML = t(state.form.errors);
-        linkField.classList.add('is-invalid');
-        submitButton.setAttribute('disabled', true);
-        linkField.focus();
-      } else {
-        linkField.classList.remove('is-invalid');
-        feedbackDiv.innerHTML = '';
       }
     });
 

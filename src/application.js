@@ -72,8 +72,7 @@ const getNewPosts = (feed, postsList) => {
 export default () => {
   const state = {
     form: {
-      url: '',
-      formState: 'filling',
+      formState: 'empty',
       errors: null,
     },
     feedsList: [],
@@ -83,7 +82,12 @@ export default () => {
 
   const handleInput = (e) => {
     const { value } = e.target;
-    state.form.url = value;
+    if (!value) {
+      state.form.formState = 'empty';
+      state.form.errors = null;
+      return;
+    }
+    state.form.formState = 'filling';
     validate(value)
       .then(() => {
         state.form.errors = null;
@@ -96,7 +100,8 @@ export default () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { url } = state.form;
+    const formData = new FormData(e.target);
+    const url = formData.get('link');
     state.form.formState = 'processing';
     makeRequest(url)
       .then((data) => {
@@ -111,8 +116,7 @@ export default () => {
 
         state.feedsList.unshift(newFeed);
         state.postsList.unshift(...newPosts);
-        state.form.url = '';
-        state.form.formState = 'filling';
+        state.form.formState = 'empty';
       })
       .catch((err) => {
         state.form.formState = 'filling';
