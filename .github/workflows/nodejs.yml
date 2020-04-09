@@ -2,15 +2,15 @@ name: Node CI
 
 on:
   push:
-    branches: 
+    branches:
       - master
+
   pull_request:
     branches:
       - master
 
 jobs:
   build_and_deploy:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -18,39 +18,46 @@ jobs:
         node-version: [13.x]
 
     steps:
-    - name: Checkout the repository
-      uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: npm install
-      run: make install
-      env:
-        CI: true
-    - name: Run linter
-      run: make lint
-    - name: Test & publish code coverage
-      uses: paambaati/codeclimate-action@v2.4.0
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      with:
-        coverageCommand: make test-coverage
-        debug: true
-    - name: Build
-      run: npm run build
-    - name: Deploy on Zeit staging
-      if: github.event_name == 'pull_request'
-      uses: amondnet/now-deployment@v2
-      with:
-        zeit-token: ${{ secrets.ZEIT_TOKEN }}
-        now-org-id: ${{ secrets.NOW_ORG_ID }}
-        now-project-id: ${{ secrets.NOW_PROJECT_ID }}
-    - name: Deploy on Zeit production
-      if: github.event_name == 'push'
-      uses: amondnet/now-deployment@v2
-      with:
-        zeit-token: ${{ secrets.ZEIT_TOKEN }}
-        now-org-id: ${{ secrets.NOW_ORG_ID }}
-        now-project-id: ${{ secrets.NOW_PROJECT_ID }}
-        now-args: '--prod '
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: npm install
+        run: make install
+        env:
+          CI: true
+
+      - name: Run linter
+        run: make lint
+
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v2.4.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: make test-coverage
+          debug: true
+
+      - name: Build
+        run: make build
+
+      - name: Deploy on Zeit staging
+        if: github.event_name == 'pull_request'
+        uses: amondnet/now-deployment@v2
+        with:
+          zeit-token: ${{ secrets.ZEIT_TOKEN }}
+          now-org-id: ${{ secrets.NOW_ORG_ID }}
+          now-project-id: ${{ secrets.NOW_PROJECT_ID }}
+
+      - name: Deploy on Zeit production
+        if: github.event_name == 'push'
+        uses: amondnet/now-deployment@v2
+        with:
+          zeit-token: ${{ secrets.ZEIT_TOKEN }}
+          now-org-id: ${{ secrets.NOW_ORG_ID }}
+          now-project-id: ${{ secrets.NOW_PROJECT_ID }}
+          now-args: "--prod "
