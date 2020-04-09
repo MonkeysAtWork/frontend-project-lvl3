@@ -19,13 +19,13 @@ let form;
 let input;
 
 
-const delay = time => new Promise(resolve => setTimeout(resolve, time));
+const delay = (time) => new Promise((resolve) => setTimeout(resolve, time));
 const getTree = () => html(document.body.innerHTML);
 
 const inputValue = (value) => {
   input.value = value;
   input.dispatchEvent(inputEvent);
-  return delay(10);
+  return delay(50);
 };
 
 const submitForm = () => {
@@ -80,5 +80,4 @@ test('correct URL twice', () => inputValue(`${url}/feed`)
   .then(submitForm)
   .then(() => expect(getTree()).toMatchSnapshot())
   .then(() => inputValue(`${url}/feed`))
-  .then(submitForm)
   .then(() => expect(getTree()).toMatchSnapshot()));

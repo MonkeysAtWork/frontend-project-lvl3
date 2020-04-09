@@ -27,7 +27,7 @@ const inputEvent = new Event('input', { bubbles: true });
 const submitEvent = new Event('submit');
 
 
-const delay = time => new Promise(resolve => setTimeout(resolve, time));
+const delay = (time) => new Promise((resolve) => setTimeout(resolve, time));
 const getTree = () => html(document.body.innerHTML);
 
 const inputValue = (value) => {
