@@ -1,8 +1,9 @@
 import { watch } from 'melanke-watchjs';
 import _ from 'lodash';
+import i18next from 'i18next';
 
 
-export default (state, inputHandler, submitHandler, i18next) => {
+export default (state, inputHandler, submitHandler) => {
   const formElement = document.querySelector('#rssAddForm');
   const linkField = formElement.elements.link;
   const submitButton = document.querySelector('.btn');
@@ -19,7 +20,7 @@ export default (state, inputHandler, submitHandler, i18next) => {
 
   watch(state.form, 'formState', () => {
     switch (state.form.formState) {
-      case ('empty'):
+      case ('processed'):
         linkField.removeAttribute('disabled');
         spinner.remove();
         formElement.reset();
