@@ -25,7 +25,7 @@ const getTree = () => html(document.body.innerHTML);
 const inputValue = (value) => {
   input.value = value;
   input.dispatchEvent(inputEvent);
-  return delay(50);
+  return delay(100);
 };
 
 const submitForm = () => {
