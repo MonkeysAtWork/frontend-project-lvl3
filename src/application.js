@@ -5,65 +5,33 @@ import i18next from 'i18next';
 
 import resources from './locales';
 import view from './view';
+import parseRSS from './parser';
 
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const makeAutoRequestLoop = (func, ms) => wait(ms)
   .then(func)
-  .then(() => makeAutoRequestLoop(func, ms))
-  .catch(() => makeAutoRequestLoop(func, ms));
+  .finally(() => makeAutoRequestLoop(func, ms));
 
 
-const makeValidationSchema = (feedsList) => yup
+const makeValidationSchema = (feeds) => yup
   .string()
-  .required(null)
+  .required()
   .url('form.errors.invalidURL')
-  .notOneOf(feedsList, 'form.errors.repeatURL');
-
-
-const isRSS = (doc) => doc.documentElement.tagName === 'rss';
-
-const parseRSS = (data) => {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(data, 'text/xml');
-  if (!isRSS(doc)) {
-    throw new Error('form.errors.notTargetURL');
-  }
-  const title = doc.querySelector('title').textContent;
-  const description = doc.querySelector('description').textContent;
-  const items = doc.querySelectorAll('item');
-  const posts = [...items].map((item) => {
-    const link = item.querySelector('link').textContent;
-    const content = item.querySelector('description').textContent;
-    return { link, content };
-  });
-  return { title, description, posts };
-};
+  .notOneOf(feeds, 'form.errors.repeatURL');
 
 
 const prefixURL = 'https://cors-anywhere.herokuapp.com';
 
 const getFeedData = (url) => axios.get(`${prefixURL}/${url}`)
-  .catch((err) => {
-    console.log(err.message);
-    throw new Error('form.errors.unreachableURL');
-  })
   .then((response) => parseRSS(response.data));
 
 
-const addIdToPostsList = (posts, id) => posts.map((post) => ({ ...post, id }));
+const addIdToPosts = (posts, id) => posts.map((post) => ({ ...post, id }));
 
-const getNewPosts = (feed, postsList) => {
-  const { url, id } = feed;
-  return getFeedData(url)
-    .then(({ posts }) => {
-      const addedPosts = postsList.filter((post) => post.id === id);
-      const newPosts = _.differenceBy(posts, addedPosts, 'link');
-      return addIdToPostsList(newPosts, id);
-    })
-    .catch(() => []);
-};
+const getNewPosts = (url, existingPosts) => getFeedData(url)
+  .then((feed) => _.differenceBy(feed.posts, existingPosts, 'link'));
 
 
 export default () => {
@@ -77,15 +45,15 @@ export default () => {
         valid: false,
         error: null,
       },
-      feedsList: [],
-      postsList: [],
+      feeds: [],
+      posts: [],
     };
 
 
     const handleInput = (e) => {
       state.form.formState = 'filling';
       const { value } = e.target;
-      const addedUrls = state.feedsList.map((el) => el.url);
+      const addedUrls = state.feeds.map((el) => el.url);
       const schema = makeValidationSchema(addedUrls);
       schema.validate(value)
         .then(() => {
@@ -93,7 +61,13 @@ export default () => {
           state.form.valid = true;
         })
         .catch((err) => {
-          state.form.error = err.message;
+          let errorMessage;
+          if (!value) {
+            errorMessage = null;
+          } else {
+            errorMessage = err.message;
+          }
+          state.form.error = errorMessage;
           state.form.valid = false;
         });
     };
@@ -109,29 +83,41 @@ export default () => {
           const { title, description, posts } = data;
           const id = _.uniqueId();
           const newFeed = { title, description, id, url }; // eslint-disable-line object-curly-newline, max-len
-          const newPosts = addIdToPostsList(posts, id);
+          const newPosts = addIdToPosts(posts, id);
 
-          state.feedsList.unshift(newFeed);
-          state.postsList.unshift(...newPosts);
+          state.feeds.unshift(newFeed);
+          state.posts.unshift(...newPosts);
           state.form.formState = 'processed';
           state.form.valid = false;
         })
         .catch((err) => {
+          let errorMessage;
+          if (err.isAxiosError) {
+            errorMessage = 'form.errors.unreachableURL';
+          } else {
+            errorMessage = err.message;
+          }
           state.form.formState = 'filling';
           state.form.valid = false;
-          state.form.error = err.message;
+          state.form.error = errorMessage;
         });
     };
 
 
+    const getFeedUpdates = ({ url, id }) => {
+      const addedPosts = state.posts.filter((post) => post.id === id);
+      const newPostsPromise = getNewPosts(url, addedPosts);
+      return newPostsPromise.then((posts) => addIdToPosts(posts, id));
+    };
+
     const updateFeeds = () => {
-      if (state.feedsList.length < 1) {
+      if (state.feeds.length < 1) {
         return;
       }
-      const newPostsPromises = state.feedsList.map((feed) => getNewPosts(feed, state.postsList));
-      Promise.all(newPostsPromises).then((allNewPosts) => allNewPosts
-        .filter((posts) => posts.length > 0)
-        .forEach((posts) => state.postsList.unshift(...posts)));
+      const promisies = state.feeds.map(getFeedUpdates);
+      Promise.allSettled(promisies).then((p) => p
+        .filter(({ status }) => status === 'fulfilled')
+        .forEach(({ value }) => state.posts.unshift(...value)));
     };
 
 
