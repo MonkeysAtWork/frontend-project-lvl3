@@ -65,14 +65,14 @@ export default (state, inputHandler, submitHandler) => {
   );
 
 
-  watch(state, 'postsList', () => {
+  watch(state, 'posts', () => {
     feedsConteiner.innerHTML = '';
 
     const divForFeeds = document.createElement('div');
     divForFeeds.classList.add('list-group', 'list-group-flush', 'border-right');
     feedsConteiner.append(divForFeeds);
 
-    state.feedsList.forEach((channel) => {
+    state.feeds.forEach((channel) => {
       const div = document.createElement('div');
       div.classList.add('list-group-item');
       div.innerHTML = makeChannelElementHtml(channel);
@@ -85,7 +85,7 @@ export default (state, inputHandler, submitHandler) => {
     ulForPosts.classList.add('list-group', 'list-group-flush', 'overflow-auto');
     postsConteiner.append(ulForPosts);
 
-    state.postsList.forEach(({ link, content }) => {
+    state.posts.forEach(({ link, content }) => {
       const li = document.createElement('li');
       li.classList.add('list-group-item');
       const a = document.createElement('a');

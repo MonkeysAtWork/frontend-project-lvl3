@@ -5,6 +5,8 @@ module.exports = {
         targets: {
           node: 'current',
         },
+        useBuiltIns: 'usage',
+        corejs: { version: 3, proposals: true },
       },
     ],
   ],
