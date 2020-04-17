@@ -1,10 +1,12 @@
-install: install-deps
-
-install-deps:
+install:
 	npm ci
 
 develop:
 	npx webpack-dev-server --open
+
+dev:
+	rm -rf dist
+	npx webpack
 
 build:
 	rm -rf dist
